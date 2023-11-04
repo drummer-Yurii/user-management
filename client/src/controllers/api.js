@@ -82,4 +82,24 @@ export default {
         alert(err);
       });
   },
+
+  DeleteUser: (id) => {
+    if (id != null) {
+      return fetch(API_BASE + '/users/delete/' + id, {
+        method: 'DELETE',
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.success) {
+            alert('User removed successfully');
+            return true;
+          } else {
+            throw data.response.error;
+          }
+        })
+        .catch((err) => {
+          alert(err);
+        });
+    }
+  },
 };
