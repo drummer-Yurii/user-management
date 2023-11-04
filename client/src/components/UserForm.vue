@@ -11,12 +11,12 @@
         <label for="email">Email</label>
         <input type="email" name="email" id="email" class="form-control" v-model="user.email"  />
       </div>
-      <div class="form-group">
+      <div class="form-group" v-if="userId == false">
         <label for="password">Password</label>
         <input type="password" name="password" id="password" class="form-control" v-model="user.password"  />
       </div>
 
-      <input type="submit" value="Add" class="button" />
+      <input type="submit" :value="(userId != false) ? 'Update' : 'Add'" class="button" />
     </form>
   </div>
 </template>
@@ -31,7 +31,7 @@ export default {
     const user = ref({});
 
     const GetUser = async () => {
-        // Get User Detail
+        user.value = await APIController.FetchUser(props.userId);
     }
 
     const AddNewUser = async () => {
@@ -42,12 +42,27 @@ export default {
         }
     }
 
+    const UpdateUser = async () => {
+        let tempUser = await APIController.UpdateUser(user.value.name, user.value.email, props.userId);
+        if (tempUser) {
+            props.fetchUsers();
+            props.toggleForm();
+        }
+    }
+
     return {
         user,
         GetUser,
         AddNewUser,
+        UpdateUser,
     }
   },
+
+  mounted() {
+    if (this.userId != false) {
+        this.GetUser();
+    }
+  }
 };
 </script>
 
