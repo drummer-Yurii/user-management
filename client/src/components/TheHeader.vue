@@ -10,7 +10,7 @@
     }
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 header {
     display: block;
     padding: 16px;

@@ -1,34 +1,39 @@
 <template>
   <div class="dashboard">
     <TheHeader />
+    <main>
+      <TheToolbar />
+    </main>
   </div>
 </template>
 
 <script>
 import TheHeader from '@/components/TheHeader.vue';
+import TheToolbar from '@/components/TheToolbar.vue';
 export default {
   name: 'App',
   components: {
-    TheHeader
+    TheHeader,
+    TheToolbar,
   },
 };
 </script>
 
 <style>
 :root {
-  --primary: #8A4CFC;
+  --primary: #8a4cfc;
   --primary-alt: #702fe7;
-  --light: #EEEEEE;
-  --light-alt: #F8F8F8;
+  --light: #eeeeee;
+  --light-alt: #f8f8f8;
   --grey: #888888;
-  --dark: #131A26; 
+  --dark: #131a26;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Fira sans", sans-serif;
+  font-family: 'Fira sans', sans-serif;
 }
 
 body {
@@ -40,7 +45,8 @@ main {
   overflow: hidden;
 }
 
-input, button {
+input,
+button {
   appearance: none;
   outline: none;
   border: none;
@@ -51,7 +57,7 @@ input, button {
   display: inline-block;
   padding: 8px 16px;
   background-color: var(--primary);
-  color: #FFF;
+  color: #fff;
   font-size: 20px;
   font-weight: 700;
   text-transform: uppercase;
@@ -72,7 +78,7 @@ input, button {
 }
 
 .button.button-outline:hover {
-  color: #FFF;
+  color: #fff;
   background-color: var(--primary);
 }
 
