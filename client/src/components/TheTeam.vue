@@ -1,14 +1,14 @@
 <template>
     <div class="team">
-        <div class="team-members table">
+        <div class="team-members table" v-if="users.length > 0">
             <div class="table-header table-row">
                 <div class="table-col">Name</div>
                 <div class="table-col">Email</div>
                 <div class="table-col table-actions">Actions</div>
             </div>
-            <div class="member table-row">
-                <div class="table-col name">Jeff Bezos</div>
-                <div class="table-col email">jeff@amazon.com</div>
+            <div class="member table-row" v-for="user in users" :key="user.id">
+                <div class="table-col name">{{ user.name }}</div>
+                <div class="table-col email">{{ user.email }}</div>
                 <div class="table-col actions">
                     <div class="button-group group-end">
                         <button class="button button-small">Update</button>
@@ -17,12 +17,16 @@
                 </div>
             </div>
         </div>
+        <div class="no-team" v-else>
+            <p>No Team available</p>
+        </div>
     </div>
 </template>
 
 <script>
     export default {
         name: 'TheTeam',
+        props: ["users"],
     }
 </script>
 

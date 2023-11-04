@@ -3,12 +3,15 @@
     <TheHeader />
     <main>
       <TheToolbar />
-      <TheTeam />
+      <TheTeam :users="users" />
     </main>
   </div>
 </template>
 
 <script>
+import { ref } from 'vue';
+import APIController from '@/controllers/api';
+
 import TheHeader from '@/components/TheHeader.vue';
 import TheToolbar from '@/components/TheToolbar.vue';
 import TheTeam from '@/components/TheTeam.vue';
@@ -18,6 +21,23 @@ export default {
     TheHeader,
     TheToolbar,
     TheTeam,
+  },
+
+  setup() {
+    const users = ref([]);
+
+    const fetchUsers = async () => {
+      users.value = await APIController.FetchUsers();
+    };
+
+    return {
+      users,
+      fetchUsers,
+    };
+  },
+
+  mounted() {
+    this.fetchUsers();
   },
 };
 </script>
