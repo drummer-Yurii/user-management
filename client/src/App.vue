@@ -4,6 +4,7 @@
     <main>
       <TheToolbar />
       <TheTeam :users="users" />
+      <UserForm />
     </main>
   </div>
 </template>
@@ -15,12 +16,14 @@ import APIController from '@/controllers/api';
 import TheHeader from '@/components/TheHeader.vue';
 import TheToolbar from '@/components/TheToolbar.vue';
 import TheTeam from '@/components/TheTeam.vue';
+import UserForm from '@/components/UserForm.vue';
 export default {
   name: 'App',
   components: {
     TheHeader,
     TheToolbar,
     TheTeam,
+    UserForm,
   },
 
   setup() {
