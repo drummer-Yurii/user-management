@@ -2,9 +2,9 @@
   <div class="dashboard">
     <TheHeader />
     <main>
-      <TheToolbar />
+      <TheToolbar :toggleForm="toggleForm" />
       <TheTeam :users="users" />
-      <UserForm />
+      <UserForm v-if="formActive" :toggleForm="toggleForm" />
     </main>
   </div>
 </template>
@@ -28,14 +28,23 @@ export default {
 
   setup() {
     const users = ref([]);
+    const formActive = ref(false);
 
     const fetchUsers = async () => {
       users.value = await APIController.FetchUsers();
     };
 
+    const toggleForm = (id = false) => {
+      formActive.value = !formActive.value;
+
+      console.log(id);
+    }
+
     return {
       users,
       fetchUsers,
+      formActive,
+      toggleForm,
     };
   },
 

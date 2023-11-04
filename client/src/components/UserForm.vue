@@ -1,6 +1,6 @@
 <template>
     <div class="user-form">
-        <div class="form-overlay"></div>
+        <div class="form-overlay" @click="() => toggleForm()"></div>
         <form class="form" @submit.prevent="">
             <h3>User form</h3>
             <div class="form-group">
@@ -23,7 +23,8 @@
 
 <script>
     export default {
-       name: 'UserForm', 
+       name: 'UserForm',
+       props: ["toggleForm"] 
     }
 </script>
 
